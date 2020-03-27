@@ -12,10 +12,14 @@ node{
 	}
      }
      stage('ReviewofCode'){
+          try {
                withMaven(maven:'admaven'){
                sh 'mvn pmd:pmd'
-          }
-          }
+               }
+               }finally{
+                    pmd canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/pmd.xml', unHealthy: ''
+               }     
+               }
      stage('Test the Code'){
           try {
                withMaven(maven:'admaven'){
