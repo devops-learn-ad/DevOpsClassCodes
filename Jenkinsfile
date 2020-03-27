@@ -28,7 +28,7 @@ node{
           }
      stage('Code Coverage Check'){
           withMaven(maven:'admaven'){
-               sh 'mvn cobertura:cobertura'
+               sh 'cobertura:cobertura -Dcobertura.report.format=xml'
           }
      }     
      stage('Package'){
